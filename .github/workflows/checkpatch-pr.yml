@@ -1,9 +1,14 @@
 name: checkpatch review
 on: [pull_request]
+
+permissions: read-all
+
 jobs:
   my_review:
     name: checkpatch review
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     steps:
     - name: 'Calculate PR commits + 1'
       run: echo "PR_FETCH_DEPTH=$(( ${{ github.event.pull_request.commits }} + 1 ))" >> $GITHUB_ENV
